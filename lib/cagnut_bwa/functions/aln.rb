@@ -6,6 +6,7 @@ module CagnutBwa
     def_delegators :'CagnutBwa.config', :aln_params
 
     def initialize opts = {}
+      @order = sprintf '%02i', opts[:order]
       @input = opts[:input].nil? ? "#{seqs_path}" : opts[:input]
       @input2 = File.expand_path fetch_filename, File.dirname(@input)
       abort('Cant recognized sequence files') if @input2.nil?
@@ -60,7 +61,7 @@ module CagnutBwa
     end
 
     def generate_script
-      script_name = 'bwa_aln'
+      script_name = "#{@order}_bwa_aln"
       file = File.join jobs_dir, "#{script_name}.sh"
       template = Tilt.new(File.expand_path '../templates/aln.sh', __FILE__)
       File.open(file, 'w') do |f|

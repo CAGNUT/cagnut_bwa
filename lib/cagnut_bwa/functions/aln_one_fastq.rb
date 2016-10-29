@@ -7,6 +7,7 @@ module CagnutBwa
     def_delegators :'CagnutBwa.config', :aln_params
 
     def initialize opts = {}
+      @order = sprintf '%02i', opts[:order]
       @input = opts[:input].nil? ? "#{seqs_path}" : opts[:input]
       abort('Cant recognized sequence files') if @input.nil?
       @input2 = File.expand_path fetch_filename(@input), File.dirname(@input) if @input.match '_1_'
@@ -61,7 +62,7 @@ module CagnutBwa
     end
 
     def generate_script
-      script_name = 'bwa_aln_one_fastq'
+      script_name = "#{@order}_bwa_aln_one_fastq"
       file = File.join jobs_dir, "#{script_name}.sh"
       File.open(file, 'w') do |f|
         f.puts <<-BASH.strip_heredoc

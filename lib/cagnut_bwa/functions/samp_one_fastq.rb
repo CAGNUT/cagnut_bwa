@@ -7,6 +7,7 @@ module CagnutBwa
     def_delegators :'CagnutBwa.config', :rg_str, :samp_params
 
     def initizaline opts = {}
+      @order = sprintf '%02i', opts[:order]
       @job_name = "#{prefix_name}_#{sample_name}_Samp"
       @seq = opts[:input].nil? ? "#{seqs_path}" : opts[:input]
       abort('Cant recognized sequence files') if @seq.nil?
@@ -70,7 +71,7 @@ module CagnutBwa
     end
 
     def bwa_samp_one_fastq script_name
-      file = File.join jobs_dir, "#{script_name}.sh"
+      file = File.join jobs_dir, "#{@order}_#{script_name}.sh"
       path = File.expand_path "../templates/#{script_name}.sh", __FILE__
       template = Tilt.new path
       File.open(file, 'w') do |f|

@@ -7,6 +7,7 @@ module CagnutBwa
     def_delegators :'CagnutBwa.config', :rg_str,:samp_params
 
     def initialize opts = {}
+      @order = sprintf '%02i', opts[:order]
       @fastq = opts[:input].nil? ? "#{seqs_path}" : opts[:input]
       @fastq2 = File.expand_path fetch_filename(@fastq), File.dirname(@fastq)
       @input = "#{opts[:dirs][:input]}/#{File.basename(@fastq)}.sai"
@@ -53,7 +54,7 @@ module CagnutBwa
     end
 
     def generate_script
-      script_name = 'bwa_samp'
+      script_name = "#{@order}_bwa_samp"
       file = File.join jobs_dir, "#{script_name}.sh"
       template = Tilt.new(File.expand_path '../templates/samp.sh', __FILE__)
       File.open(file, 'w') do |f|
