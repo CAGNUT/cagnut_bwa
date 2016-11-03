@@ -46,8 +46,8 @@ module CagnutBwa
       array = aln_params.dup
       array.insert 1, 'aln'
       array << "#{ref_fasta}"
-      array << "-f #{@output}"
       array << "#{@input}"
+      array << "> #{@output}"
       array.uniq
     end
 
@@ -55,8 +55,8 @@ module CagnutBwa
       array = aln_params.dup
       array.insert 1, 'aln'
       array << "#{ref_fasta}"
-      array << "-f #{@output2}"
-      array << "#{@input2}"
+      array << "#{@input2} >"
+      array << "#{@output2}"
       array.uniq
     end
 
