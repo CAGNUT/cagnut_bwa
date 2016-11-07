@@ -3,7 +3,7 @@ module CagnutBwa
     def check_tool tools_path, refs=nil
       super if defined?(super)
       ver = check_bwa tools_path['bwa'], refs['ref_fasta']
-      check_bwa_index tools_path['bwa'], refs['ref_fasta'] if ver.blank?
+      check_bwa_index tools_path['bwa'], refs['ref_fasta'] if !ver.blank?
     end
 
     def check_bwa path, ref_path
