@@ -12,5 +12,6 @@ module CagnutBwa
 end
 
 require 'cagnut_bwa/configuration'
+require 'cagnut_bwa/check_tools'
 require 'cagnut_bwa/base'
 require 'cagnut_bwa/util'
