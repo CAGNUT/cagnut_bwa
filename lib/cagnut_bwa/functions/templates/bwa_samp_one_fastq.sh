@@ -34,8 +34,8 @@ echo "bwa processed" $PROCESSED
 if [[ "#{seq}" =~ gz$ ]]
 then
 
-  LINESFASTQ1=$(zcat "#{seq}" | wc -l)
-  LINESFASTQ2=$(zcat "#{seq2}" | wc -l)
+  LINESFASTQ1=$(gunzip -c "#{seq}" | wc -l)
+  LINESFASTQ2=$(gunzip -c "#{seq2}" | wc -l)
 
 else
 # non gz files

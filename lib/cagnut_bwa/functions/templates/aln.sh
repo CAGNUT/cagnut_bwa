@@ -33,7 +33,7 @@ echo "bwa processed" $PROCESSED
 
 if [[ "#{input}" =~ gz$ ]]
 then
-  LINESFASTQ1=$(zcat "#{input}" | wc -l)
+  LINESFASTQ1=$(gunzip -c "#{input}" | wc -l)
 else
 # non gz files
   LINESFASTQ1=$(wc -l "#{input}" | cut -d" " -f1 )
@@ -85,7 +85,7 @@ echo "bwa processed" $PROCESSED
 
 if [[ "#{input2}" =~ gz$ ]]
 then
-  LINESFASTQ2=$(zcat "#{input2}" | wc -l)
+  LINESFASTQ2=$(gunzip -c "#{input2}" | wc -l)
 else
 # non gz files
   LINESFASTQ2=$(wc -l "#{input2}" | cut -d" " -f1 )
