@@ -26,7 +26,7 @@ else
 fi
 
 #check for correct number of sequences processed, based on fastq records
-PROCESSED=$(tail -5 #{jobs_dir}/#{script_name}.err | grep " sequences have been processed." | grep -o "[0-9]\+")
+PROCESSED=$(tail -5 #{jobs_dir}/#{script_name}.err | grep " sequences have been processed." | grep -o "[0-9]\\\+")
 
 echo "checking stdout file: " #{jobs_dir}/#{script_name}.err
 echo "bwa processed" $PROCESSED
@@ -79,7 +79,7 @@ else
 fi
 
 #check for correct number of sequences processed, based on fastq records
-PROCESSED=$(tail -5 #{jobs_dir}/#{script_name}.err | grep " sequences have been processed." | grep -o "[0-9]\+")
+PROCESSED=$(tail -5 #{jobs_dir}/#{script_name}.err | grep " sequences have been processed." | grep -o "[0-9]\\\+")
 echo "checking stdout file: " #{jobs_dir}/#{script_name}.err
 echo "bwa processed" $PROCESSED
 
