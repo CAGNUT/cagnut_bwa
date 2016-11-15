@@ -43,7 +43,7 @@ echo "bwa processed" $PROCESSED
 if [[ "#{fastq}" =~ gz$ ]]
 then
   LINESFASTQ1=$(gunzip -c "#{fastq}" | wc -l)
-  LINESFASTQ2=$(gunzip -c "#{fastq2}.gz" | wc -l)
+  LINESFASTQ2=$(gunzip -c "#{fastq2}" | wc -l)
 else
 # non gz files
   LINESFASTQ1=$(wc -l "#{fastq}" | cut -d" " -f1 )
